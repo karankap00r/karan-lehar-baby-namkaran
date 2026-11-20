@@ -40,6 +40,7 @@ const TIME_NOTE  = "onwards";      // "onwards", or "– 2:30 PM", or ""
   --blush:#FBF0DB;
   --gold:#B38439;
   --gold-ink:#8A6220;
+  --kumkum:#A81B33;
 }
 
 *{box-sizing:border-box}
@@ -89,6 +90,15 @@ body::after{
 }
 
 /* ───────────── the lamplit scene ───────────── */
+.invocation{
+  margin:0; padding:22px 20px 4px;
+  text-align:center;
+  font-family:'Tiro Devanagari Hindi',serif;
+  font-size:clamp(.92rem,3.4vw,1.08rem);
+  color:var(--kumkum);
+  letter-spacing:.02em;
+  animation:rise .9s .15s ease-out backwards;
+}
 .scene{
   display:flex; align-items:flex-end; justify-content:center;
   gap:clamp(6px,3vw,26px);
@@ -205,6 +215,7 @@ body::after{
   margin:1.5em auto 0; max-width:24em;
   font-size:clamp(1rem,3.7vw,1.1rem); color:rgba(20,50,58,.82);
 }
+.say-short{display:none}
 .lede em{font-family:'Fraunces',Georgia,serif; font-style:italic; font-weight:400}
 
 .hosts{
@@ -258,6 +269,12 @@ body::after{
 
 .blessing{position:relative; background:var(--teal-deep); color:#FFE9D2; text-align:center; padding:76px 24px 66px}
 .blessing::before{content:""; position:absolute; inset:0; background:radial-gradient(70% 100% at 50% 0%, rgba(245,166,35,.24), transparent 66%)}
+.blessing .shloka{
+  position:relative; margin:0 0 20px;
+  font-family:'Tiro Devanagari Hindi',serif; font-style:normal;
+  font-size:clamp(1.5rem,6.4vw,2.1rem);
+  color:var(--marigold); line-height:1.3;
+}
 .blessing p{
   position:relative; margin:0 auto; max-width:19em;
   font-family:'Fraunces',Georgia,serif; font-style:italic; font-weight:300;
@@ -275,18 +292,36 @@ body::after{
 .blessing :focus-visible{outline-color:var(--marigold)}
 
 @media (max-width:480px){
-  .jaali{opacity:.13}
-  .cradle{width:min(300px,56vw)}
-  .scene{padding:0 10px 4px}
-  .card-body{padding:6px 16px 48px}
-  .thali{width:clamp(156px,45vw,200px); height:clamp(156px,45vw,200px); margin-top:20px}
-  .grain{width:9.5px; height:16px}
-  .hint{margin-top:11px; font-size:.63rem; letter-spacing:.26em; text-indent:.26em}
-  .lede{margin-top:1.2em}
-  .hosts{margin-top:24px}
-  .rule{margin:24px auto 20px}
-  .when .time{margin-top:16px}
-  .join{margin-top:26px; padding:16px 30px}
+  .jaali{opacity:.12}
+  .invocation{padding:10px 20px 0; font-size:.88rem}
+  .scene{padding:0 10px 0; gap:4px}
+  .cradle{width:min(176px,40vw)}
+  .diya{width:clamp(32px,9.5vw,42px); margin-bottom:5px}
+  .invite{padding-bottom:40px}
+  .card-body{padding:4px 14px 34px}
+  .lift{margin-top:-38%}
+  .eyebrow{font-size:1.06rem}
+  .eyebrow small{font-size:.57rem; letter-spacing:.34em; text-indent:.34em; margin-top:5px}
+  .thali{width:clamp(126px,35vw,146px); height:clamp(126px,35vw,146px); margin-top:12px}
+  .grains{gap:7px}
+  .grain{width:8px; height:13.5px}
+  .secret{padding:0 18px; font-size:.86rem; line-height:1.35}
+  .hint{margin-top:6px; font-size:.57rem; letter-spacing:.24em; text-indent:.24em}
+  .say-long{display:none}
+  .say-short{display:inline}
+  .lede{margin-top:.8em; font-size:.94rem; max-width:20em}
+  .hosts{margin-top:14px; font-size:1.72rem}
+  .hosts small{margin-top:5px; font-size:.82rem}
+  .rule{margin:13px auto 11px; max-width:180px}
+  .rule svg{width:24px; height:24px}
+  .when .day{font-size:.6rem; letter-spacing:.38em; text-indent:.38em}
+  .when .date{font-size:2.6rem; margin:5px 0 2px}
+  .when .month{font-size:1.02rem}
+  .when .time{margin-top:9px; font-size:.85rem}
+  .join{margin-top:15px; padding:14px 28px; min-height:44px; font-size:.72rem; letter-spacing:.2em; text-indent:.2em}
+  .note{margin-top:12px; font-size:.77rem; max-width:24em}
+  .blessing{padding:52px 24px 46px}
+  .blessing .shloka{margin-bottom:14px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important; transition:none !important}
@@ -312,6 +347,8 @@ body::after{
 </svg>
 
 <div class="page">
+
+  <p class="invocation" lang="hi">॥ श्री गणेशाय नमः ॥</p>
 
   <div class="scene">
     <svg class="diya" viewBox="0 0 60 74" aria-hidden="true">
@@ -369,8 +406,9 @@ body::after{
           <p class="hint reveal" style="animation-delay:1.3s">Tap the thali</p>
 
           <p class="lede reveal" style="animation-delay:1.4s">
-            Our little one already has a name. On Saturday we write it in rice,
-            whisper it three times, and say it out loud for the <em>first time</em>.
+            <span class="say-long">Our little one already has a name. On Saturday it is written
+            in rice, whispered, and said out loud for the <em>first time</em>.</span><span
+            class="say-short">A name already chosen &mdash; said out loud for the <em>first time</em>.</span>
           </p>
 
           <p class="hosts reveal" style="animation-delay:1.5s">
@@ -380,7 +418,7 @@ body::after{
 
           <div class="rule reveal" style="animation-delay:1.6s" aria-hidden="true">
             <i></i>
-            <svg viewBox="0 0 24 24"><path d="M12 2c1.9 2.6 2.9 5 2.9 7.2 0 1.3-.3 2.5-.9 3.7 1.6-1.2 3.4-1.8 5.3-1.8 1.4 0 2.6.2 3.7.7-1.3 5-5.1 8.2-11 8.2S2.3 16.8 1 11.8c1.1-.5 2.3-.7 3.7-.7 1.9 0 3.7.6 5.3 1.8-.6-1.2-.9-2.4-.9-3.7C9.1 7 10.1 4.6 12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 1.4c1.5 1.2 2.3 2.2 2.3 3.1 0 1.1-1 2-2.3 2s-2.3-.9-2.3-2c0-.9.8-1.9 2.3-3.1zM7.2 7.1C5.1 5.6 3.5 5 2.3 5.3c.6 1.9 2.3 2.9 4.9 1.8zm9.6 0c2.1-1.5 3.7-2.1 4.9-1.8-.6 1.9-2.3 2.9-4.9 1.8zM6.9 7.6h10.2l-1 2.1H7.9zM8 10.4h8c1.7 1.6 2.6 3.5 2.6 5.5 0 3.4-3 6.1-6.6 6.1s-6.6-2.7-6.6-6.1c0-2 .9-3.9 2.6-5.5z"/></svg>
             <i></i>
           </div>
 
@@ -403,7 +441,8 @@ body::after{
   </main>
 
   <footer class="blessing">
-    <p>A name to grow into, and a whole family here to say it for the first time.</p>
+    <p class="shloka" lang="sa">आयुष्मान् भव</p>
+    <p>A name to grow into, a long life to grow it in — and a whole family here to say it for the first time.</p>
     <p class="sig">Karan &amp; Lehar</p>
   </footer>
 
